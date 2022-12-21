@@ -3,12 +3,20 @@
 <body>
 <div class="container">
     <form action="/products/new" method="post">
-        <div class="form-group">
-            <label for="name">상품명</label>
-            <input type="text" id="name" name="name">
-            <input type="text" id="price" name="price">
-            <input type="text" id="stock" name="stock">
-        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>재고수량</th>
+            </tr>
+            </thead>
+            <tbody>
+                <td><input type="text" id="name" name="name"></td>
+                <td><input type="text" id="price" name="price"></td>
+                <td><input type="text" id="stock" name="stock"></td>
+            </tbody>
+        </table>
         <button type="submit">상품등록</button>
     </form>
 </div>

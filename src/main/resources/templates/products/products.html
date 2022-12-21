@@ -14,10 +14,16 @@
       </thead>
       <tbody>
       <tr th:each="product : ${products}">
+        <td th:text="${product.no}"></td>
         <td th:text="${product.name}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.stock}"></td>
-        <button>상품 수정</button>
+        <td>
+          <a href="#" th:href="@{/products/{no}/update (no=${product.no})}">수정</a>
+        </td>
+        <td>
+          <a href="#" th:href="@{/products/{no}/delete (no=${product.no})}">삭제</a>
+        </td>
       </tr>
       </tbody>
     </table>

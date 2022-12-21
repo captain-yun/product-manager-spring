@@ -4,9 +4,7 @@ import com.example.productmanager.domain.Product;
 import com.example.productmanager.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ProductController {
@@ -37,5 +35,25 @@ public class ProductController {
     public String listProducts(Model model) {
         model.addAttribute("products", productService.findMembers());
         return "products/products";
+    }
+
+    @GetMapping("/products/{no}/update")
+    public String updateProductForm(@PathVariable("no") Long no, Model model) {
+        Product product = productService.findOne(no);
+        model.addAttribute("product", product);
+        return "products/productUpdateForm";
+    }
+
+    @PostMapping("/products/{no}/update")
+    public String updateProduct(@PathVariable("no") Long no,
+                                @ModelAttribute Product product) {
+        productService.update(product);
+        return "redirect:/products";
+    }
+    @GetMapping("/products/{no}/delete")
+    public String deleteProduct(@PathVariable("no") Long no) {
+        productService.delete(no);
+
+        return "redirect:/products";
     }
 }
