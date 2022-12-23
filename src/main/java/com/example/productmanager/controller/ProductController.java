@@ -20,6 +20,11 @@ public class ProductController {
         return "home";
     }
 
+    @GetMapping("/api")
+    public String restPage() {
+        return "api/apiPage";
+    }
+
     @GetMapping("/products/new")
     public String postForm() {
         return "products/postProductForm";
@@ -33,7 +38,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public String listProducts(Model model) {
-        model.addAttribute("products", productService.findMembers());
+        model.addAttribute("products", productService.findProducts());
         return "products/products";
     }
 

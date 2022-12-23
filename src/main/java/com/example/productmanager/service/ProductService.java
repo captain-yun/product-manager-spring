@@ -21,7 +21,7 @@ public class ProductService {
         return product.getNo();
     }
 
-    public List<Product> findMembers() {
+    public List<Product> findProducts() {
         return productRepository.findAll();
     }
 
