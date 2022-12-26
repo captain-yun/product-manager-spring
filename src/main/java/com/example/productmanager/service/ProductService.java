@@ -31,10 +31,11 @@ public class ProductService {
 
     @Transactional
     public void update(Product product) {
-        Product ProductToBeUpdated = productRepository.findById(product.getNo()).get();
-        ProductToBeUpdated.setName(product.getName());
-        ProductToBeUpdated.setPrice(product.getPrice());
-        ProductToBeUpdated.setStock(product.getStock());
+        Product productToBeUpdated = productRepository.findById(product.getNo()).get();
+        productToBeUpdated.setName(product.getName());
+        productToBeUpdated.setPrice(product.getPrice());
+        productToBeUpdated.setStock(product.getStock());
+        // productRepository.save(productRepository);
     }
 
     public void delete(Long no) {

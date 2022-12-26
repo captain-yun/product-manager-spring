@@ -11,7 +11,6 @@ import java.util.List;
 public class ProductApiController {
 
     private final ProductService productService;
-
     public ProductApiController(ProductService productService) {
         this.productService = productService;
     }
@@ -21,18 +20,26 @@ public class ProductApiController {
         return productService.findProducts();
     }
 
-//    @PostMapping("/products")
-//    public Product postProducts() {
-//
-//    }
+    @PostMapping("/products")
+    public Product createProducts(@RequestBody Product product) {
+        Long no = productService.join(product);
+        return productService.findOne(no);
+    }
 
-//    @PutMapping("/products/{no}")
-//    public Product postProducts(@PathVariable Long no) {
-//
-//    }
+    @PutMapping("/products/{no}")
+    public Product updateProduct(@PathVariable Long no, @RequestBody ProductForm form) {
+        Product product = productService.findOne(no);
+        product.setName(form.getName());
+        product.setPrice(form.getPrice());
+        product.setStock(form.getStock());
 
-//    @DeleteMapping("/products/{no}")
-//    public Product postProducts(@PathVariable Long no) {
-//
-//    }
+        productService.update(product);
+
+        return productService.findOne(no);
+    }
+
+    @DeleteMapping("/products/{no}")
+    public void deleteProduct(@PathVariable Long no) {
+        productService.delete(no);
+    }
 }

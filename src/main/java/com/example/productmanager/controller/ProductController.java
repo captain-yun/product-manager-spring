@@ -21,7 +21,7 @@ public class ProductController {
     }
 
     @GetMapping("/api")
-    public String restPage() {
+    public String apiPage() {
         return "api/apiPage";
     }
 
@@ -49,7 +49,7 @@ public class ProductController {
         return "products/productUpdateForm";
     }
 
-    @PostMapping("/products/{no}/update")
+    @PutMapping("/products/{no}/update")
     public String updateProduct(@PathVariable("no") Long no,
                                 @ModelAttribute Product product) {
         productService.update(product);
